@@ -1,0 +1,108 @@
+/* Configuração global da tela */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0f0f14;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+  
+  /* Container Principal (Aumentado para 550px na horizontal) */
+  .card-container {
+    position: relative;
+    width: 550px;  /* Retângulo bem mais largo */
+    height: 380px; /* Altura total */
+    display: flex;
+    align-items: flex-end; /* Alinha o retângulo na base */
+    cursor: pointer;
+  }
+  
+  /* O retângulo com o SEU degradê */
+  .card-background {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 300px; /* Menor que a altura total para a imagem saltar no topo */
+    background: linear-gradient(45deg, #d41e31, #491f8f);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    transition: all 0.5s ease;
+    z-index: 1; /* Camada do fundo */
+  }
+  
+  /* Imagem da Capitã Marvel (À frente de tudo) */
+  .card-imagem {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scale(1); 
+    height: 380px; /* Altura maior que o retângulo, saltando para cima */
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none; /* Evita que ela trave o clique do mouse */
+    
+    /* Mantém a base presa enquanto ela aumenta de tamanho */
+    transform-origin: bottom center; 
+    
+    /* Garante que ela fique na frente do retângulo e do texto */
+    z-index: 3; 
+  }
+  
+  /* Caixa de informações (Lado ESQUERDO) */
+  .card-info {
+    position: absolute;
+    left: 45px; /* Um pouco mais afastado da borda esquerda */
+    bottom: 50px;
+    width: 240px; /* Texto com mais espaço horizontal para respirar */
+    color: white;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 2; /* Fica no meio: na frente do fundo, mas atrás da imagem */
+  }
+  
+  .card-info h2 {
+    margin: 0;
+    font-size: 2rem; /* Texto ligeiramente maior aproveitando o novo espaço */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.1;
+  }
+  
+  .card-info .real-name {
+    margin: 5px 0 12px 0;
+    color: #ffeb3b; /* Amarelo clássico da personagem */
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  
+  .card-info .desc {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    opacity: 0.85;
+  }
+  
+  /* ===================================================
+     O EFEITO HOVER (PASSAR O MOUSE NO CONTAINER)
+     =================================================== */
+  
+  /* 1. A imagem vai bem para a direita e aumenta, flutuando na frente */
+  .card-container:hover .card-imagem {
+    /* Move 15% para a direita do centro e cresce (1.15) */
+    transform: translateX(3%) scale(1.15); 
+  }
+  
+  /* 2. O texto aparece na esquerda */
+  .card-container:hover .card-info {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  /* 3. Brilho extra e micro pulsação no retângulo degradê */
+  .card-container:hover .card-background {
+    box-shadow: 0 20px 45px rgba(212, 30, 49, 0.45);
+    transform: scale(1.01); 
+  }
